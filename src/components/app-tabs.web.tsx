@@ -116,3 +116,11 @@ const styles = StyleSheet.create({
     marginLeft: Spacing.three,
   },
 });
+
+console.log({
+  Tabs,
+  TabList,
+  TabTrigger,
+  TabSlot,
+  SymbolView,
+});
