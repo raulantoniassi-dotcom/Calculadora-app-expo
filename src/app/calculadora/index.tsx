@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Calculadora() {
+export default function CalculadoraPitagoras() {
   return ( 
     <ThemedView style={styles.container}>
           <SafeAreaView style={styles.safeArea}>
             <ThemedView style={styles.heroSection}>
-            <iframe src="./calculadora/pitagoras" style={styles.iframe}>
+  
             <PitagorasScreen />
-            </iframe>
+          
             </ThemedView>
           </SafeAreaView>
         </ThemedView>
