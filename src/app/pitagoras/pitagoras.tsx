@@ -7,45 +7,57 @@ import { Button, Text, StyleSheet, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
+    minHeight: "100%",
+    backgroundColor: "#0B0914",
     justifyContent: "center",
-    flexDirection: "row",
+    alignItems: "stretch",
   },
+
   safeArea: {
     flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: "center",
-    gap: Spacing.three,
+    width: "100%",
+    maxWidth: undefined,
+    alignSelf: "stretch",
+    paddingHorizontal: 40,
+    paddingVertical: 30,
     paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+    alignItems: "stretch",
+    justifyContent: "center",
+    gap: 24,
   },
+
   heroSection: {
+    flex: 1,
+    width: "100%",
+    maxWidth: undefined,
+    alignSelf: "stretch",
     alignItems: "center",
     justifyContent: "center",
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    paddingHorizontal: 30,
+    paddingVertical: 40,
+    gap: 22,
+    backgroundColor: "#0B0914",
   },
-  title: {
-    textAlign: "center",
-  },
-  code: {
-    textTransform: "uppercase",
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: "stretch",
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
+
   TextInput: {
+    backgroundColor: "#171422",
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#403454",
+    borderRadius: 14,
     marginBottom: 10,
-    padding: 5,
+    paddingVertical: 16,
+    paddingHorizontal: 18,
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "600",
+    width: "100%",
+    maxWidth: 500,
   },
 });
 
@@ -122,7 +134,7 @@ export default function PitagorasScreen() {
             value={hipotenusaInput}
             onChangeText={setHipotenusa}
           />
-            <Text>Resultado:</Text>
+           <ThemedText>Resultado:</ThemedText>
                     <TextInput
                       id="hipotenusa"
                       placeholder=""

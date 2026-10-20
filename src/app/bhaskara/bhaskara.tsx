@@ -25,52 +25,6 @@ function getDevMenuHint() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    flexDirection: "row",
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: "center",
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: "center",
-  },
-  code: {
-    textTransform: "uppercase",
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: "stretch",
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
-  TextInput: {
-    borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 10,
-    padding: 5,
-  },
-  iframe: {
-    width: 500,
-    height: 500,
-  },
-});
-
 export default function BhaskaraScreen() {
   const [valorAInput, setValorA] = useState("");
   const [valorBInput, setValorB] = useState("");
@@ -139,7 +93,7 @@ calcularDelta(valorA, valorB, valorC);
             value={valorCInput}
             onChangeText={setValorC}
           />
-          <Text>Resultado:</Text>
+          <ThemedText>Resultado:</ThemedText>
           <TextInput
             id="hipotenusa"
             placeholder=""
@@ -153,3 +107,80 @@ calcularDelta(valorA, valorB, valorC);
     </ThemedView>
   );
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    minHeight: "100%",
+    backgroundColor: "#0B0914",
+    justifyContent: "center",
+    alignItems: "stretch",
+  },
+
+  safeArea: {
+    flex: 1,
+    width: "100%",
+    maxWidth: undefined,
+    alignSelf: "stretch",
+    paddingHorizontal: 40,
+    paddingVertical: 30,
+    alignItems: "stretch",
+    justifyContent: "center",
+    gap: 24,
+    paddingBottom: BottomTabInset + Spacing.three,
+  },
+
+  heroSection: {
+    flex: 1,
+    width: "100%",
+    maxWidth: undefined,
+    alignSelf: "stretch",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 30,
+    paddingVertical: 40,
+    gap: 22,
+    backgroundColor: "#0B0914",
+  },
+
+  title: {
+    textAlign: "center",
+    color: "#F5F0FF",
+    fontSize: 32,
+    fontWeight: "900",
+    letterSpacing: 1,
+  },
+
+  code: {
+    textTransform: "uppercase",
+    color: "#B69AFF",
+  },
+
+  stepContainer: {
+    gap: Spacing.three,
+    alignSelf: "stretch",
+    paddingHorizontal: 24,
+    paddingVertical: 28,
+    borderRadius: 20,
+    backgroundColor: "#171422",
+    borderWidth: 1,
+    borderColor: "#302741",
+  },
+
+  TextInput: {
+    backgroundColor: "#171422",
+    borderWidth: 1,
+    borderColor: "#403454",
+    borderRadius: 14,
+    marginBottom: 10,
+    paddingVertical: 16,
+    paddingHorizontal: 18,
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "600",
+    width: "100%",
+    maxWidth: 500,
+  },
+});
