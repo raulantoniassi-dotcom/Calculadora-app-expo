@@ -2,8 +2,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import * as Device from "expo-device";
-import { useState } from "react";
-import { Button, Platform, StyleSheet, TextInput } from "react-native";
+import {Platform, StyleSheet} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PitagorasScreen from "./pitagoras";
 

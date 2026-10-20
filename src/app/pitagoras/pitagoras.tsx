@@ -3,7 +3,7 @@ import { ThemedView } from "@/components/themed-view";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import * as Device from "expo-device";
 import { useState } from "react";
-import { Button, Platform, StyleSheet, TextInput } from "react-native";
+import { Button, Text, StyleSheet, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
@@ -54,6 +54,7 @@ export default function PitagorasScreen() {
   const [catetoAInput, setCatetoA] = useState("");
   const [catetoBInput, setCatetoB] = useState("");
   const [hipotenusaInput, setHipotenusa] = useState("");
+  const [resultado, setResultado] = useState("");
 
   const calcularCatetoA = (catetoB: number, hipotenusa: number) => {
     return (hipotenusa * hipotenusa - catetoB * catetoB) ** 0.5;
@@ -71,21 +72,21 @@ export default function PitagorasScreen() {
     const catetoA = catetoAInput === "" ? NaN : Number(catetoAInput);
     const catetoB = catetoBInput === "" ? NaN : Number(catetoBInput);
     const hipotenusa = hipotenusaInput === "" ? NaN : Number(hipotenusaInput);
-
+    
     let resposta: number;
 
     switch (true) {
       case Number.isNaN(catetoA):
         resposta = calcularCatetoA(catetoB, hipotenusa);
-        setCatetoA(String(resposta.toFixed(2)));
+        setResultado(String(resposta.toFixed(2)));
         break;
       case Number.isNaN(catetoB):
         resposta = calcularCatetoB(catetoA, hipotenusa);
-        setCatetoB(String(resposta.toFixed(2)));
+        setResultado(String(resposta.toFixed(2)));
         break;
       case Number.isNaN(hipotenusa):
         resposta = calcularHipotenusa(catetoA, catetoB);
-        setHipotenusa(String(resposta.toFixed(2)));
+        setResultado(String(resposta.toFixed(2)));
         break;
       default:
         resposta = NaN;
@@ -121,6 +122,14 @@ export default function PitagorasScreen() {
             value={hipotenusaInput}
             onChangeText={setHipotenusa}
           />
+            <Text>Resultado:</Text>
+                    <TextInput
+                      id="hipotenusa"
+                      placeholder=""
+                      style={styles.TextInput}
+                      value={resultado}
+                      onChangeText={setResultado}
+                    />
 
           <Button onPress={calcular} title="Calcular" />
         </ThemedView>
