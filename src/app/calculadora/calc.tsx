@@ -115,10 +115,9 @@ export default function CalculadoraScreen() {
           <View style={styles.visor}>
             <Text
               style={styles.resultado}
-              numberOfLines={1}
-              adjustsFontSizeToFit
             >
-              {valor.replace(".", ",")}
+       
+       
             </Text>
           </View>
 

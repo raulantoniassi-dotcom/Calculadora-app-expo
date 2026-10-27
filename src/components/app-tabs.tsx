@@ -20,13 +20,28 @@ export default function AppTabs() {
         />
       </NativeTabs.Trigger>
 
-      <NativeTabs.Trigger name="explore">
-        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="bhaskara"/>
+        <NativeTabs.Trigger.Label>Bhaskara</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          src={require('@/assets/images/tabIcons/explore.png')}
+          renderingMode="template"
+        />
+
+      <NativeTabs.Trigger name="calculadora"/>
+        <NativeTabs.Trigger.Label>Calculadora</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          src={require('@/assets/images/tabIcons/explore.png')}
+          renderingMode="template"
+        />
+
+      <NativeTabs.Trigger name="pitagoras">
+        <NativeTabs.Trigger.Label>Pitágoras</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require('@/assets/images/tabIcons/explore.png')}
           renderingMode="template"
         />
       </NativeTabs.Trigger>
+      
     </NativeTabs>
   );
 }
