@@ -1,186 +1,245 @@
-import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
-import * as Device from "expo-device";
+import { BottomTabInset, Spacing } from "@/constants/theme";
 import { useState } from "react";
-import { Button, Platform, StyleSheet, TextInput, Text} from "react-native";
+import { Pressable, StyleSheet, Text, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-function getDevMenuHint() {
-  if (Platform.OS === "web") {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === "android" ? "cmd+m (or ctrl+m)" : "cmd+d";
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
 
 export default function BhaskaraScreen() {
   const [valorAInput, setValorA] = useState("");
   const [valorBInput, setValorB] = useState("");
   const [valorCInput, setValorC] = useState("");
   const [resultado, setResultado] = useState("");
-  let delta: number;
-  let primeiroX: Number;
-  let segundoX: Number;
 
   const calcularBhaskara = (valorA: number, valorB: number, valorC: number) => {
-    const calcularDelta = (valorA: number, valorB: number, valorC: number) => {
-      return (delta = (valorB * valorB) - (4 * valorA * valorC))
-    };
+    const delta = valorB * valorB - 4 * valorA * valorC;
 
-calcularDelta(valorA, valorB, valorC);
+    if (delta < 0) {
+      return "Não existem raízes reais.";
+    }
 
     const raizDelta = Math.sqrt(delta);
-    primeiroX = (-(valorB) + raizDelta)/ (2 * valorA);
-    segundoX = (-(valorB) - raizDelta)/ (2 * valorA);
+    const primeiroX = (-valorB + raizDelta) / (2 * valorA);
+    const segundoX = (-valorB - raizDelta) / (2 * valorA);
 
-    return  `X1 = ${primeiroX}, X2 = ${segundoX}`;;
+    return `X1 = ${primeiroX.toFixed(2)}, X2 = ${segundoX.toFixed(2)}`;
   };
-  const calcular = () => {
-    const valorA = valorAInput === "" ? NaN : Number(valorAInput);
-    const valorB = valorBInput === "" ? NaN : Number(valorBInput);
-    const valorC = valorCInput === "" ? NaN : Number(valorCInput);
-    let resposta: string;
-    let respostaConta;
 
-    switch (true) {
-      case isNaN(valorA || valorB || valorC):
-        resposta = "Insira um número nos espaços safadu";
-        setValorA(String(resposta));
-        setValorB(String(resposta));
-        setValorC(String(resposta));
-        break;
-      default:
-        respostaConta = calcularBhaskara(valorA, valorB, valorC);
-        setResultado(respostaConta);
-        break;
+  const calcular = () => {
+    const valorA = valorAInput.trim() === "" ? NaN : Number(valorAInput);
+    const valorB = valorBInput.trim() === "" ? NaN : Number(valorBInput);
+    const valorC = valorCInput.trim() === "" ? NaN : Number(valorCInput);
+
+    if (
+      !Number.isFinite(valorA) ||
+      !Number.isFinite(valorB) ||
+      !Number.isFinite(valorC)
+    ) {
+      setResultado("Preencha os três campos com números.");
+      return;
     }
+
+    if (valorA === 0) {
+      setResultado("O coeficiente A precisa ser diferente de zero.");
+      return;
+    }
+
+    setResultado(calcularBhaskara(valorA, valorB, valorC));
   };
 
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ThemedView style={styles.heroSection}>
+          <Text style={styles.subtitulo}>GRIMOIRE · MATHEMATICAL ARTS</Text>
+
+          <Text style={styles.titulo}>Fórmula de Bhaskara</Text>
+
+          <Text style={styles.descricao}>
+            Descubra as raízes da equação do segundo grau.
+          </Text>
+
+          <Text style={styles.etiqueta}>COEFICIENTE A</Text>
           <TextInput
-            id="catetoA"
-            placeholder="A"
+            nativeID="valorA"
+            placeholder="Insira o valor de A"
+            placeholderTextColor="#8299AA"
+            keyboardType="numbers-and-punctuation"
             style={styles.TextInput}
             value={valorAInput}
             onChangeText={setValorA}
           />
+
+          <Text style={styles.etiqueta}>COEFICIENTE B</Text>
           <TextInput
-            id="catetoB"
-            placeholder="B"
+            nativeID="valorB"
+            placeholder="Insira o valor de B"
+            placeholderTextColor="#8299AA"
+            keyboardType="numbers-and-punctuation"
             style={styles.TextInput}
             value={valorBInput}
             onChangeText={setValorB}
           />
+
+          <Text style={styles.etiqueta}>COEFICIENTE C</Text>
           <TextInput
-            id="hipotenusa"
-            placeholder="C"
+            nativeID="valorC"
+            placeholder="Insira o valor de C"
+            placeholderTextColor="#8299AA"
+            keyboardType="numbers-and-punctuation"
             style={styles.TextInput}
             value={valorCInput}
             onChangeText={setValorC}
           />
-          <ThemedText>Resultado:</ThemedText>
-          <TextInput
-            id="hipotenusa"
-            placeholder=""
-            style={styles.TextInput}
-            value={resultado}
-            onChangeText={setResultado}
-          />
-          <Button onPress={calcular} title="Calcular" />
+
+          <ThemedView style={styles.resultadoContainer}>
+            <Text style={styles.resultadoLabel}>✧ RESULTADO DO CÁLCULO</Text>
+
+            <Text style={styles.resultadoTexto}>
+              {resultado || "Aguardando cálculo..."}
+            </Text>
+          </ThemedView>
+
+          <Pressable onPress={calcular} style={styles.botao}>
+            <Text style={styles.textoBotao}>✧ CALCULAR ✧</Text>
+          </Pressable>
+
+          <Text style={styles.rodape}>MAGIA ANTIGA · PRECISÃO MATEMÁTICA</Text>
         </ThemedView>
       </SafeAreaView>
     </ThemedView>
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
     minHeight: "100%",
-    backgroundColor: "#0B0914",
-    justifyContent: "center",
-    alignItems: "stretch",
+    alignSelf: "stretch",
+    backgroundColor: "#0C141E",
   },
 
   safeArea: {
     flex: 1,
     width: "100%",
-    maxWidth: undefined,
     alignSelf: "stretch",
-    paddingHorizontal: 40,
-    paddingVertical: 30,
-    alignItems: "stretch",
-    justifyContent: "center",
-    gap: 24,
+    paddingHorizontal: 24,
+    paddingTop: 24,
     paddingBottom: BottomTabInset + Spacing.three,
+    justifyContent: "center",
   },
 
   heroSection: {
     flex: 1,
     width: "100%",
-    maxWidth: undefined,
     alignSelf: "stretch",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 30,
-    paddingVertical: 40,
-    gap: 22,
-    backgroundColor: "#0B0914",
-  },
-
-  title: {
-    textAlign: "center",
-    color: "#F5F0FF",
-    fontSize: 32,
-    fontWeight: "900",
-    letterSpacing: 1,
-  },
-
-  code: {
-    textTransform: "uppercase",
-    color: "#B69AFF",
-  },
-
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: "stretch",
     paddingHorizontal: 24,
-    paddingVertical: 28,
-    borderRadius: 20,
-    backgroundColor: "#171422",
-    borderWidth: 1,
-    borderColor: "#302741",
+    paddingVertical: 30,
+    gap: 16,
+    backgroundColor: "#0C141E",
+  },
+
+  titulo: {
+    color: "#E7F1F7",
+    fontSize: 30,
+    fontWeight: "600",
+    textAlign: "center",
+    letterSpacing: 0.5,
+  },
+
+  subtitulo: {
+    color: "#C6B17D",
+    fontSize: 11,
+    fontWeight: "700",
+    textAlign: "center",
+    letterSpacing: 2,
+  },
+
+  descricao: {
+    color: "#8299AA",
+    fontSize: 14,
+    textAlign: "center",
+    marginBottom: 12,
+  },
+
+  etiqueta: {
+    width: "100%",
+    maxWidth: 560,
+    color: "#C6B17D",
+    fontSize: 12,
+    fontWeight: "700",
+    letterSpacing: 1.8,
+    marginBottom: -10,
   },
 
   TextInput: {
-    backgroundColor: "#171422",
-    borderWidth: 1,
-    borderColor: "#403454",
-    borderRadius: 14,
-    marginBottom: 10,
-    paddingVertical: 16,
-    paddingHorizontal: 18,
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "600",
     width: "100%",
-    maxWidth: 500,
+    maxWidth: 560,
+    minHeight: 58,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: "#152333",
+    color: "#E7F1F7",
+    borderWidth: 1,
+    borderColor: "#40586B",
+    borderRadius: 14,
+    fontSize: 16,
+  },
+
+  resultadoContainer: {
+    width: "100%",
+    maxWidth: 560,
+    padding: 20,
+    marginTop: 6,
+    backgroundColor: "#152333",
+    borderWidth: 1,
+    borderColor: "#B6A16D",
+    borderRadius: 14,
+    gap: 10,
+  },
+
+  resultadoLabel: {
+    color: "#C6B17D",
+    fontSize: 11,
+    fontWeight: "700",
+    letterSpacing: 1.5,
+  },
+
+  resultadoTexto: {
+    color: "#E7F1F7",
+    fontSize: 20,
+    fontWeight: "600",
+  },
+
+  botao: {
+    width: "100%",
+    maxWidth: 560,
+    minHeight: 56,
+    marginTop: 6,
+    paddingHorizontal: 24,
+    paddingVertical: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#B8D7E8",
+    borderWidth: 1,
+    borderColor: "#E7F1F7",
+    borderRadius: 14,
+  },
+
+  textoBotao: {
+    color: "#10202D",
+    fontSize: 14,
+    fontWeight: "700",
+    letterSpacing: 1.5,
+  },
+
+  rodape: {
+    color: "#60798B",
+    fontSize: 10,
+    textAlign: "center",
+    letterSpacing: 1,
+    marginTop: 8,
   },
 });

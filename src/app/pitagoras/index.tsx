@@ -2,7 +2,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import * as Device from "expo-device";
-import {Platform, StyleSheet} from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PitagorasScreen from "./pitagoras";
 
@@ -28,60 +28,81 @@ function getDevMenuHint() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    flexDirection: "row",
+    width: "100%",
+    minHeight: "100%",
+    alignSelf: "stretch",
+    backgroundColor: "#0C141E",
   },
+
   safeArea: {
     flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: "center",
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+    width: "100%",
+    alignSelf: "stretch",
+    backgroundColor: "#0C141E",
   },
+
   heroSection: {
-    alignItems: "center",
-    justifyContent: "center",
     flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    width: "100%",
+    alignSelf: "stretch",
+    backgroundColor: "#0C141E",
   },
+
   title: {
     textAlign: "center",
+    color: "#E7F1F7",
+    fontSize: 28,
+    fontWeight: "600",
+    letterSpacing: 0.5,
   },
+
   code: {
     textTransform: "uppercase",
+    color: "#C6B17D",
+    letterSpacing: 1.5,
   },
+
   stepContainer: {
     gap: Spacing.three,
     alignSelf: "stretch",
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
-  TextInput: {
+    borderRadius: 20,
+    backgroundColor: "#152333",
     borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 10,
-    padding: 5,
+    borderColor: "#354D60",
   },
+
+  TextInput: {
+    width: "100%",
+    maxWidth: 560,
+    minHeight: 58,
+    backgroundColor: "#152333",
+    borderWidth: 1,
+    borderColor: "#40586B",
+    borderRadius: 14,
+    paddingHorizontal: 18,
+    paddingVertical: 15,
+    color: "#E7F1F7",
+    fontSize: 16,
+  },
+
   iframe: {
-    width: 500,
-    height: 500
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    borderWidth: 0,
   },
 });
 
 export default function CalculadoraPitagoras() {
-  return ( 
+  return (
     <ThemedView style={styles.container}>
-          <SafeAreaView style={styles.safeArea}>
-            <ThemedView style={styles.heroSection}>
-  
-            <PitagorasScreen />
-          
-            </ThemedView>
-          </SafeAreaView>
+      <SafeAreaView style={styles.safeArea}>
+        <ThemedView style={styles.heroSection}>
+          <PitagorasScreen />
         </ThemedView>
-      );
-    }
-    
+      </SafeAreaView>
+    </ThemedView>
+  );
+}

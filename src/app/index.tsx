@@ -62,26 +62,26 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
+container: {
+  flex: 1,
+  width: "100%",
+  minHeight: "100%",
+  alignSelf: "stretch",
+},
+
+safeArea: {
+  flex: 1,
+  width: "100%",
+  alignSelf: "stretch",
+},
+
+heroSection: {
+  flex: 1,
+  width: "100%",
+  alignSelf: "stretch",
+  alignItems: "center",
+  justifyContent: "center",
+},
   title: {
     textAlign: 'center',
   },
