@@ -1,8 +1,7 @@
-import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { BottomTabInset, Spacing } from "@/constants/theme";
 import { useState } from "react";
-import { Pressable, Text, StyleSheet, TextInput } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
@@ -137,23 +136,29 @@ const styles = StyleSheet.create({
   },
 });
 
+export interface Game {
+  id: string;
+  name: string;
+  url: string;
+}
+
+export const calcularCatetoA = (catetoB: number, hipotenusa: number): number => {
+  return (hipotenusa * hipotenusa - catetoB * catetoB) ** 0.5;
+};
+
+export const calcularCatetoB = (catetoA: number, hipotenusa: number): number => {
+  return (hipotenusa * hipotenusa - catetoA * catetoA) ** 0.5;
+};
+
+export const calcularHipotenusa = (catetoA: number, catetoB: number): number => {
+  return (catetoA * catetoA + catetoB * catetoB) ** 0.5;
+};
+
 export default function PitagorasScreen() {
   const [catetoAInput, setCatetoA] = useState("");
   const [catetoBInput, setCatetoB] = useState("");
   const [hipotenusaInput, setHipotenusa] = useState("");
   const [resultado, setResultado] = useState("");
-
-  const calcularCatetoA = (catetoB: number, hipotenusa: number) => {
-    return (hipotenusa * hipotenusa - catetoB * catetoB) ** 0.5;
-  };
-
-  const calcularCatetoB = (catetoA: number, hipotenusa: number) => {
-    return (hipotenusa * hipotenusa - catetoA * catetoA) ** 0.5;
-  };
-
-  const calcularHipotenusa = (catetoA: number, catetoB: number) => {
-    return (catetoA * catetoA + catetoB * catetoB) ** 0.5;
-  };
 
   const calcular = () => {
     const catetoA = catetoAInput.trim() === "" ? NaN : Number(catetoAInput);

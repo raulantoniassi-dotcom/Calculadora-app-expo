@@ -20,28 +20,23 @@ export default function AppTabs() {
         />
       </NativeTabs.Trigger>
 
-      <NativeTabs.Trigger name="bhaskara"/>
-        <NativeTabs.Trigger.Label>Bhaskara</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          renderingMode="template"
-        />
+  
+      <NativeTabs.Trigger name="bhaskara"> 
+        <NativeTabs.Trigger.Label>Bhaskara</NativeTabs.Trigger.Label> 
+        <NativeTabs.Trigger.Icon src={{ uri: 'https://freepngimg.com/save/54461-calculator-png-image-high-quality/1024x1024' }} renderingMode="template" /> 
+      </NativeTabs.Trigger> 
 
-      <NativeTabs.Trigger name="calculadora"/>
-        <NativeTabs.Trigger.Label>Calculadora</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          renderingMode="template"
-        />
+    
+      <NativeTabs.Trigger name="calculadora"> 
+        <NativeTabs.Trigger.Label>Calculadora</NativeTabs.Trigger.Label> 
+ <NativeTabs.Trigger.Icon src={{ uri: 'https://freepngimg.com/save/54461-calculator-png-image-high-quality/1024x1024' }} renderingMode="template" />  
+      </NativeTabs.Trigger> 
 
-      <NativeTabs.Trigger name="pitagoras">
-        <NativeTabs.Trigger.Label>Pitágoras</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-      
-    </NativeTabs>
-  );
+  
+      <NativeTabs.Trigger name="pitagoras"> 
+        <NativeTabs.Trigger.Label>Pitágoras</NativeTabs.Trigger.Label> 
+ <NativeTabs.Trigger.Icon src={{ uri: 'https://freepngimg.com/save/54461-calculator-png-image-high-quality/1024x1024' }} renderingMode="template" /> 
+      </NativeTabs.Trigger> 
+    </NativeTabs> 
+  ); 
 }

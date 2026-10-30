@@ -112,13 +112,8 @@ export default function CalculadoraScreen() {
             "Toda resposta começa com um cálculo."
           </Text>
 
-          <View style={styles.visor}>
-            <Text
-              style={styles.resultado}
-            >
-       
-       
-            </Text>
+          <View style={styles.visor} testID="Visor">
+            <Text style={styles.resultado}>{valor}</Text>
           </View>
 
           <View style={styles.linha}>

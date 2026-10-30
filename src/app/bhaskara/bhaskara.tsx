@@ -4,13 +4,7 @@ import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function BhaskaraScreen() {
-  const [valorAInput, setValorA] = useState("");
-  const [valorBInput, setValorB] = useState("");
-  const [valorCInput, setValorC] = useState("");
-  const [resultado, setResultado] = useState("");
-
-  const calcularBhaskara = (valorA: number, valorB: number, valorC: number) => {
+export const calcularBhaskara = (valorA: number, valorB: number, valorC: number) => {
     const delta = valorB * valorB - 4 * valorA * valorC;
 
     if (delta < 0) {
@@ -24,6 +18,13 @@ export default function BhaskaraScreen() {
     return `X1 = ${primeiroX.toFixed(2)}, X2 = ${segundoX.toFixed(2)}`;
   };
 
+export default function BhaskaraScreen() {
+  const [valorAInput, setValorA] = useState("");
+  const [valorBInput, setValorB] = useState("");
+  const [valorCInput, setValorC] = useState("");
+  const [resultado, setResultado] = useState("");
+
+  
   const calcular = () => {
     const valorA = valorAInput.trim() === "" ? NaN : Number(valorAInput);
     const valorB = valorBInput.trim() === "" ? NaN : Number(valorBInput);
