@@ -6,18 +6,18 @@ describe("Teste calculo do teorema de pitagoras", () => {
   it("calculo do cateto A", () => {
     const resultado = calcularCatetoA(10, 6);
 
-    expect(resultado === 8)
+    expect(resultado).toBe(8);
   });
 
   it("calculo do cateto B", () => {
     const resultado = calcularCatetoB(3, 5);
 
-    expect(resultado === 4)
+    expect(resultado).toBe(4);
   });
 
   it("calculo da hipotenusa", () => {
     const resultado = calcularHipotenusa(12, 5);
 
-    expect(resultado === 13)
+    expect(resultado).toBe(13);
   });
 });
